@@ -22,4 +22,4 @@ Typed declaration	                                 Ha	            Ha
 Untyped declaration	                                 Ha         	Yo'q
 Function natijasini saqlash	                         Mumkin emas	Mumkin
 
-Constant'lar compile time'da mavjud bo'ladi, variable'lar esa dastur xotirasidagi o'zgaruvchilar sifatida ishlatiladi.
+Constant'lar compile time'da mavjud bo'ladi , variable'lar esa dastur xotirasidagi o'zgaruvchilar sifatida ishlatiladi.
