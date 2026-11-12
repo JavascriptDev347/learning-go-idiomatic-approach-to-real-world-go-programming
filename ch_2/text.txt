@@ -12,8 +12,6 @@ asosan 3 ta qismga ajratadi:
     2. Exponent — sonning kattalik darajasini bildiradi.
     3. Mantissa (significand) — sonning muhim raqamlarini saqlaydi.
 
-
-
 String -> immutable.
     default qiymati:  ""
     goda utf-8 formatidagi baytlar ketma ketligi shu sababli istalgan unicode belgini saqlashi mumkin

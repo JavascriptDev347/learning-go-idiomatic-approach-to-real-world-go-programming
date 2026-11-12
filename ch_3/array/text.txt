@@ -1,0 +1,7 @@
+Array => aniq uzunlikka ega bo'lishi yoki initialize qilinshi shart
+
+[...] => bu shaklda qilinsa qiymatlari berilishi shart
+
+uzunligidan ko'p element qo'shilsa xatolik beradi
+
+== orqali ikkita arrayni tengligini tekshirsa bo'ladi
