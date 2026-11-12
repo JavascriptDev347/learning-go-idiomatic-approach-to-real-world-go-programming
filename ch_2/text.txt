@@ -1,0 +1,13 @@
+4 main literals:
+    integer literal
+    floating-point literal
+    rune literal
+    string literals
+
+integer va float farqi ?
+
+integer har bir bit sonning qiymatini ifodalashga hizmat qiladi. Floatda esa boshqacha u IEEE 754 standartiga asosan ishlaydi va
+asosan 3 ta qismga ajratadi:
+    1. Sign - son musbat yoki manfiy ekanliginni anglatadi
+    2. Exponent — sonning kattalik darajasini bildiradi.
+    3. Mantissa (significand) — sonning muhim raqamlarini saqlaydi.
