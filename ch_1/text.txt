@@ -1,0 +1,28 @@
+What I learnt from this chapter ?
+
+compile  -> go build
+code formatter -> go fmt
+dependency manager -> go mod
+test runner -> go test
+scan coding mistakes -> go vet
+
+
+go mod init [name] -> the main purpose of this command is turn to this current folder into a go module. This command creates        one    file go.mod. That file tells the Go toolchain three things: this folder is the root of a project, the        project’s name is hello_world, and it is written for a particular version of Go.
+
+go build -> go.mod ni topadi. Module root va module nomini aniqlaydi.
+    Paketlarni yig’adi. Joriy papkadagi .go fayllarni va ular import qilgan barcha paketlarni (standart kutubxona va dependency’lar) aniqlaydi.
+    Kompilyatsiya qiladi. Har bir paket uchun quyidagilar bajariladi:
+    parse: kod sintaksis daraxtiga (AST) aylantiriladi;
+    type check: tiplar tekshiriladi, ishlatilmagan import va o’zgaruvchilar xato beradi;
+    SSA optimizatsiya: inlining, escape analysis, keraksiz kodni olib tashlash;
+    mashina kodi generatsiyasi.
+    Link qiladi. Barcha paketlar va Go runtime (garbage collector, goroutine scheduler) bitta faylga birlashtiriladi.
+
+
+go fmt ./... -> for formatting change
+
+go vet ->
+    In one class of bugs, the code is syntactically valid but quite likely incorrect. The go tool includes a command called go vet to detect these kinds of errors.
+
+Makefile -> umumiy qilib aytilsa,loyihaning buyruqlar menyusi
+    .DEFAULT_GOAL := build -> targetni belgilaydi, agar bu yozilmasa default target sifatida birinchi yozilgan buyruqni oladi.
