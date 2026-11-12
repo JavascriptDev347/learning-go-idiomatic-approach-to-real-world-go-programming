@@ -11,3 +11,13 @@ asosan 3 ta qismga ajratadi:
     1. Sign - son musbat yoki manfiy ekanliginni anglatadi
     2. Exponent — sonning kattalik darajasini bildiradi.
     3. Mantissa (significand) — sonning muhim raqamlarini saqlaydi.
+
+
+
+String -> immutable.
+    default qiymati:  ""
+    goda utf-8 formatidagi baytlar ketma ketligi shu sababli istalgan unicode belgini saqlashi mumkin
+
+rune -->
+    bu int32ning aliasi va bitta Unicode kod nuqtasini ifodalaydi:
+    rune bitta qo'shtirnoq

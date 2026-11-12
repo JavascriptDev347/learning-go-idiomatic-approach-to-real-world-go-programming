@@ -1,0 +1,23 @@
+Type conversion-->
+    no other type can be converted to a bool, implicity and explicity
+    go does not allow automatic conversion
+    implicity meaning automatic conversion (go has not this)
+    explicity developer do it
+
+Const ->
+    Constants in Go are a way to give names to literals. They can only hold values that the compiler can                    figure out at compile time.
+
+Compile time va runtime ?
+    Go compiler kodingni tekshirayotgan va executable dasturga aylantirayotgan vaqt.
+Runtime ?
+    dastur ishga tushib, amallarni bajarayotgan vaqt.
+
+Const va var farqi ?
+Xususiyat	                                         const	        var
+
+Compile time'da aniqlanadigan qiymat	             Ha          	Ha
+Runtime qiymati	                                     O'zgarmaydi	O'zgarishi mumkin
+Qiymatini qayta tayinlash	                         Mumkin emas	Mumkin
+Typed declaration	                                 Ha	            Ha
+Untyped declaration	                                 Ha         	Yo'q
+Function natijasini saqlash	                         Mumkin emas	Mumkin
