@@ -1,0 +1,3 @@
+string slice =>
+        agarda string faqatgina harflardan (1 bayt) tashkil topgan bo'lsa 
+        ishlatish kerak qolgan vaqtlarda xatolik berishi mumkin
