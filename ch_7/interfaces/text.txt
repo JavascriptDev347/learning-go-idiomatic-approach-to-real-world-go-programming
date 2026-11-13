@@ -1,0 +1,8 @@
+In order for an interface to be considered nil, both the type and the value must be nil.
+
+
+Interfaces are comparable:
+        Faqat interface 2 xil narsani tekshiradi, dynamik type va dynamik valueni. Bu degani agarda dynamic type va dynamic value bir xil bo'lsagina compare qilsa bo'ladi
+
+
+interface{} isn’t special case syntax. An empty interface type simply states that the variable can store any value whose type implements zero or more methods. This just happens to match every type in Go.
