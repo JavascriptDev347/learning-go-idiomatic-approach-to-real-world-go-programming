@@ -1,0 +1,8 @@
+Value receiver and Pointer receiver
+
+If you call a value receiver method with pointer instance whose value is nil,
+your code will compile but will panic at runtime
+
+
+
+Embedding qilish inheritance emas. Agar outer va inner ikkalasida ham bir xil key bo'lsa birinchi murojat outerga tegishli o.inner.Key qilinsagina inner ichidagi keyga murojat bo'ladi
