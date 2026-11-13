@@ -1,0 +1,26 @@
+maps:
+    totalWins := map[string]int{} 
+    In this case, you are using an empty map literal. This is not the same as a nil map.
+     It has a length of 0, but you can read and write to a map assigned an empty map literal.
+
+    Zero value for map is ``` nil ```
+    Maps are not comparable. You can check if they are equal to nil, 
+    but you cannot check if two maps have identical keys and 
+    values using == or differ using !=
+
+
+When should you use a map, and when should you use a slice? 
+
+    You should use slices for lists of data when the data should 
+    be processed sequentially or the order of the elements is important.
+    Maps are useful when you need to organize values using something
+    other than an increasing integer value, such as a name.    
+
+
+deleting element from map:
+    agar map nil yoki element bo'lmasa hech narsa bo'lmaydi
+    delete hech narsa qaytarmaydi
+
+
+compare maps:
+    maps.Equal and maps.EqualFunc (like slices.Equal va slices.EqualFunc)
