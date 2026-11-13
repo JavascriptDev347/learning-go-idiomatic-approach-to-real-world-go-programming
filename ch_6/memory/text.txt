@@ -1,0 +1,25 @@
+Stack, Heap va Escape Analysis
+
+Stack =>
+      Stack (Stek): Ketma-ket xotira bloki bo‘lib, unda xotira ajratish va 
+      tozalash juda tez (stack pointerini siljitish orqali) amalga oshadi. 
+      Hajmi kompilyatsiya vaqtidayoq ma’lum bo‘lgan barcha qiymatlar
+      (primitivlar, structlar, massivlar va hatto pointerlarning o‘zi) 
+      stekda saqlanadi.
+
+Heap => 
+      Garbage Collector tomonidan boshqariladigan dinamik xotira
+
+
+Escape Analysis =>
+        Go kompilyatori o‘zgaruvchining qayerda saqlanishini tahlil qiladi.
+        Agar funksiya ichida yaratilgan mahalliy o‘zgaruvchining pointeri
+        funksiyadan tashqariga qaytarilsa, u stekdan "qochadi" 
+        (escapes to the heap) va avtomatik ravishda heapda saqlanadi
+        Go’da lokal o‘zgaruvchining pointerini 
+        qaytarish butunlay xavfsiz
+    
+Struct slice’lari => 
+        xotirada ketma-ket joylashgani uchun protsessor keshi 
+        orqali juda tez o‘qiladi. Struct pointerlari slice’i esa RAM bo‘ylab
+        tarqoq joylashadi va ularni o‘qish taxminan ikki barobar sekinroq kechadi

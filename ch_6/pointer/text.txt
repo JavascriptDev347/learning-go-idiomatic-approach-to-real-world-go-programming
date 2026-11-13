@@ -6,3 +6,16 @@ Pointer ta’rifi:
 Address operatori:
     & -> Qiymat oldiga qo‘yilib, uning xotira manzilini qaytaradi
     
+
+Map:
+    Go runtime tizimida `map` ichki structga pointer sifatida 
+    amalga oshirilgan. Shuning uchun map funksiyaga uzatilganda 
+    pointerning nusxasi o‘tadi va map elementlarini o‘zgartirish,
+    qo‘shish yoki o‘chirish chaqiruvchida ham tasir etadi
+
+Slice: 
+    Slice uchta maydondan iborat kichik struktura hisoblanadi:
+        1. Boshlang‘ich massivga pointer (`array`).
+        2. Uzunlik (`len`).
+        3. Sig‘im 
+
