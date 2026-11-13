@@ -1,0 +1,43 @@
+slice vs array =>
+    array qatiy uzunlikka ega bo'lishi kerak
+    slice bu muammo yo'q va xoxlaganingcha uni kengaytira olasan
+
+
+slice:
+    []int{1,2,3,4:10,56} => 1,2,3,10,56
+
+slice is not comparable: you can not check two slices equal or no with == or !=
+if you want to compare two slices you must use slices.Equal()
+
+
+slice create:
+        var bilan => var x[]int -> nu nil slice
+        var x = []int{} -> bu empty slice (x:=[]int{} bilan bir xil)
+
+        make: x := make([]int, 2)
+        fmt.Println(x, len(x), cap(x)) // [0 0] 2 2
+        make bilan create qilinganida appen qilinda va agarda boshlang'ich 0 elementlar bo'lsa append ulardan keyin qo'shadi
+
+# Capacity =>
+        If you try to add additional values when the length equals the capacity, the append function uses the Go runtime to allocate a new backing array for the slice with a larger capacity.
+        The values in the original backing array are copied to the new one, the new values are added to the end of the new backing array, and the slice is updated to refer to the new backing array. Finally, the updated slice is returned
+        When a slice grows via append, it takes time for the Go runtime to allocate new memory and copy the existing data from the old memory to the new. The old memory also needs to be garbage collected. For this reason, the Go runtime usually increases a slice by more than one each time it runs out of capacity
+
+Calculate capacity =>
+        The rule as of Go 1.18 is to double the capacity of a slice when the current capacity is less than 256. A bigger slice increases by (current_capacity + 768)/4. This slowly converges at 25% growth (a slice with capacity of 512 will grow by 63%, but a slice with capacity 4,096 will grow by only 30%)
+
+Capacityni hisoblash:
+        agar  hozirgi cap 256 dan kichik bo'lsa 2x ga oshadi, 256 ga teng va undan katta bo'lsa
+        kerak cap  = (current_cap+768) / 4, jami capacity esa current_cap + (current_cap+768) / 4 ga teng bo'ladi.
+
+make:
+        make orqali slice create qilishda len qancha berilsa shuncha elementga initial valu beriladi
+
+clear:
+        clear funksiyasi sliceni barcha qiymatlarini zero valuega o'tkazadi
+
+
+slicing slice:
+        slicing qilishda biz datani copy qilmayotgan bo'lamiz shuning uchun o'zgarishlar tasir qiladi bir biriga sababi cap bir xil bo'ladi, agarda cap oshsa slicing qilinganida unda o'zgarishlar tasir qilmaydi
+
+        [low:higher:max] => shu shaklda olishda max capni cheklashi mumkin
