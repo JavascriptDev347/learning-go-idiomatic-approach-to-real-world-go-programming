@@ -1,0 +1,5 @@
+string to int =>
+    strconv.Atoi
+
+
+var orqali funksiyadan qaytgan qiymatlarni olsa bo'ladi const orqali esa yo'q

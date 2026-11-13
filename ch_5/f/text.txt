@@ -1,0 +1,3 @@
+Defer: 
+    LIFO => last in first out
+    
