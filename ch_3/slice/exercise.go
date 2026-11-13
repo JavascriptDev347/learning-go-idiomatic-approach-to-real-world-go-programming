@@ -31,16 +31,22 @@ func main() {
 	// fmt.Println(i, len(i))
 
 	// slicing slice
-	x := []string{"a", "b", "c", "d"}
-	y := x[:2]
-	z := x[1:]
-	d := x[1:3]
-	e := x[:]
-	fmt.Println("x:", x)
-	fmt.Println("y:", y)
-	fmt.Println("z:", z)
-	fmt.Println("d:", d)
-	fmt.Println("e:", e)
+	// x := []string{"a", "b", "c", "d"}
+	// y := x[:2]
+	// z := x[1:]
+	// d := x[1:3]
+	// e := x[:]
+	// fmt.Println("x:", x)
+	// fmt.Println("y:", y)
+	// fmt.Println("z:", z)
+	// fmt.Println("d:", d)
+	// fmt.Println("e:", e)
+
+	// fmt.Println("x[1:3]:", x[1:3])
+	x := []int{1, 2, 3, 4}
+	y := make([]int, 4)
+	num := copy(y, x)
+	fmt.Println(y, num)
 }
 
 func CustomEqual(s1, s2 []int) bool {
