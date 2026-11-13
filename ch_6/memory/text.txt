@@ -10,7 +10,6 @@ Stack =>
 Heap => 
       Garbage Collector tomonidan boshqariladigan dinamik xotira
 
-
 Escape Analysis =>
         Go kompilyatori o‘zgaruvchining qayerda saqlanishini tahlil qiladi.
         Agar funksiya ichida yaratilgan mahalliy o‘zgaruvchining pointeri
