@@ -1,0 +1,8 @@
+Pointer ta’rifi: 
+    Pointer — bu boshqa bir o‘zgaruvchining qiymati saqlangan 
+    xotira manzilini o‘zida ushlab turuvchi o‘zgaruvchidir
+
+
+Address operatori:
+    & -> Qiymat oldiga qo‘yilib, uning xotira manzilini qaytaradi
+    
