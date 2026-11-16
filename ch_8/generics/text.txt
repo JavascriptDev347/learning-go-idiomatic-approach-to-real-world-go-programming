@@ -1,0 +1,41 @@
+Generiklar 
+    (aniqrog‘i Type Parameters — tur parametrlari)
+    parametr yoki maydonning aniq tipini u ishlatilguniga qadar ochiq 
+    qoldirish va uning barcha elementlari bir xil tipda ekanligini 
+    kompilyatsiya vaqtida tekshirish imkonini beradi
+
+
+Type parametralar:
+     [T int | float64] -> T type parametr hisoblanadi, 2 xil tipda int va float 
+     qabul qilishini bildiradi.
+     int | float64: constraint (cheklov).
+
+Constraint:
+    any                 ===    istalgan tipni biladirad (interfacening taxallusi)
+    comparable          ===    == va != bilan solishtirib bo'ladigan tiplar
+    int | stirng        ===    Faqat shu tiplar (type safe)
+    ~ int               ===    asosi int bo'lgan barcha tiplar 
+    cmp.Ordered         ===    <, > operatorlarini qo’llaydigan tiplar (standart kutubxonada)
+
+
+
+
+Stack o’zi tayyor tip emas. Uni ishlatish uchun tipni ko’rsatish kerak: 
+Stack[int]. Bu jarayon instantiation deyiladi.
+
+type Stack[T any] struct {
+     vals []T 
+} 
+func (s *Stack[T]) Push(val T) {
+     s.vals = append(s.vals, val)
+}
+     
+func (s *Stack[T]) Pop() (T, bool) { 
+    if len(s.vals) == 0 { var zero T return zero, false } 
+    top := s.vals[len(s.vals)-1] 
+    s.vals = s.vals[:len(s.vals)-1] 
+    return top, true 
+}
+
+
+Yuqoridagi kodning tahlili:
