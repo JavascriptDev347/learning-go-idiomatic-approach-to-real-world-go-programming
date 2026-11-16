@@ -23,11 +23,26 @@ channel with an empty buffer also blocks.
 
 
 ####  Unbuffered Channels (Buferlanmagan kanallar):
-
-```
 ch := make(chan int)
+    Sig‘imi 0 ga teng.
+    Ma’lumot jo‘natuvchi (`ch <- val`) boshqa bir goroutina ma’lumotni qabul
+     qilib olmaguncha (`<-ch`) bloklanib (kutib) turadi. Ikkala goroutina 
+     uchrashgandagina ma’lumot o‘tadi.
 
-```
+###  Buffered Channels (Buferlangan kanallar):
+    ch := make(chan int, 10)
+    Belgilangan hajmga (sig‘imga) ega bo‘ladi
+    Jo‘natuvchi bufer to‘lmaguncha bloklanmay ma’lumot yuboraveradi.
+    Qabul qiluvchi esa bufer bo‘sh bo‘lsa kutib turadi.
 
- Sig‘imi 0 ga teng.
- Ma’lumot jo‘natuvchi (`ch &lt;- val`) boshqa bir goroutina ma’lumotni qabul qilib olmaguncha (`&lt;-ch`) **bloklanib (kutib)** turadi. Ikkala goroutina uchrashgandagina (rendezvous) ma’lumot o‘tadi.
+
+
+Kanallarni yopish: close(ch) orqali amalga oshiriladi.
+Yopilgan kanalga ma’lumot yozish panic beradi.
+
+Yopiq kanaldan o‘qish: Yopilgan kanaldan ma’lumot o‘qish mumkin! 
+Agar buferda ma’lumot bo‘lsa ular o‘qiladi, bufer tugagach esa kanal 
+turining nol qiymati (`zero value`) qaytadi.
+
+v, ok := <-ch if !ok { // kanal yopilgan va bo'sh }
+**for-range** **sikli:** Kanal yopilguniga qadar kelayotgan barcha ma’lumotlarni o‘qib boradi:
