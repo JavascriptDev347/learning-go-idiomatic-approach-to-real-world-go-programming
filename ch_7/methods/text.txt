@@ -5,4 +5,6 @@ your code will compile but will panic at runtime
 
 
 
-Embedding qilish inheritance emas. Agar outer va inner ikkalasida ham bir xil key bo'lsa birinchi murojat outerga tegishli o.inner.Key qilinsagina inner ichidagi keyga murojat bo'ladi
+Embedding qilish inheritance emas. Agar outer va inner ikkalasida ham bir
+ xil key bo'lsa birinchi murojat outerga tegishli o.inner.
+ Key qilinsagina inner ichidagi keyga murojat bo'ladi

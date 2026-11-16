@@ -6,7 +6,8 @@
 
 integer va float farqi ?
 
-integer har bir bit sonning qiymatini ifodalashga hizmat qiladi. Floatda esa boshqacha u IEEE 754 standartiga asosan ishlaydi va
+integer har bir bit sonning qiymatini ifodalashga hizmat qiladi. Floatda esa 
+boshqacha u IEEE 754 standartiga asosan ishlaydi va
 asosan 3 ta qismga ajratadi:
     1. Sign - son musbat yoki manfiy ekanliginni anglatadi
     2. Exponent — sonning kattalik darajasini bildiradi.
@@ -14,7 +15,8 @@ asosan 3 ta qismga ajratadi:
 
 String -> immutable.
     default qiymati:  ""
-    goda utf-8 formatidagi baytlar ketma ketligi shu sababli istalgan unicode belgini saqlashi mumkin
+    goda utf-8 formatidagi baytlar ketma ketligi shu sababli istalgan 
+    unicode belgini saqlashi mumkin
 
 rune -->
     bu int32ning aliasi va bitta Unicode kod nuqtasini ifodalaydi:

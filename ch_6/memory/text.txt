@@ -6,10 +6,19 @@ Stack =>
       Hajmi kompilyatsiya vaqtidayoq ma’lum bo‘lgan barcha qiymatlar
       (primitivlar, structlar, massivlar va hatto pointerlarning o‘zi) 
       stekda saqlanadi.
+Stack — funksiya chaqiruvlari va lokal ma'lumotlar uchun ishlatiladi.
+
+Heap — dinamik yashash muddati kerak bo'lgan obyektlar uchun ishlatiladi.
 
 Heap => 
       Garbage Collector tomonidan boshqariladigan dinamik xotira
 
+ Eng muhim tushuncha: Escape Analysis
+      Go compiler quyidagilarni tekshiradi:
+      - O'zgaruvchi faqat funksiya ichida ishlatiladimi?
+      - Uning manzili tashqariga chiqyaptimi?
+      - O'zgaruvchi funksiya tugaganidan keyin ham kerak bo'ladimi?
+      
 Escape Analysis =>
         Go kompilyatori o‘zgaruvchining qayerda saqlanishini tahlil qiladi.
         Agar funksiya ichida yaratilgan mahalliy o‘zgaruvchining pointeri

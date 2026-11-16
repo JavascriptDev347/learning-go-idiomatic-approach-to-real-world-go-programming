@@ -1,7 +1,9 @@
 maps:
     totalWins := map[string]int{} 
-    In this case, you are using an empty map literal. This is not the same as a nil map.
-     It has a length of 0, but you can read and write to a map assigned an empty map literal.
+    In this case, you are using an empty map literal. This is not the same as
+     a nil map.
+     It has a length of 0, but you can read and write to a map assigned an 
+     empty map literal.
 
     Zero value for map is ``` nil ```
     Maps are not comparable. You can check if they are equal to nil, 
