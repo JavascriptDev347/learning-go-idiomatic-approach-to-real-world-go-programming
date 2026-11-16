@@ -1,0 +1,27 @@
+Concurrency
+    Concurrency is the computer science term for breaking up a single process 
+    into independent components and specifying how these components safely share data
+
+concurrency is not parallelism
+
+Concurrency (Konkurentlik): Dasturning tuzilishi bilan bog‘liq.
+  Bu bir nechta vazifalarni bir vaqtning o‘zida mustaqil ravishda boshqarish
+  (bajarilishini rejalashtirish) qobiliyatidir. Bitta protsessor yadrosida ham 
+  konkurent dastur ishlashi mumkin.
+
+
+Parallelism (Parallellik): Dasturning bajarilishi bilan bog‘liq. 
+  Bu bir nechta amallarni bir vaqtning o‘zida, jismonan bir nechta
+  protsessor yadrolarida yonma-yon bajarishdir.
+
+
+Concurrency — bir nechta vazifani bir-birining bajarilishi davomida boshqarish.
+
+Parallelism — bir nechta vazifani aynan bir vaqtda bajarish.
+
+Xususiyat	    Concurrency	                            Parallelism
+Ma'nosi	        Vazifalarni birgalikda boshqarish	    Vazifalarni bir vaqtda bajarish
+Bitta CPU core	Ha	                                    Yo'q
+Bir nechta core	Ha	                                    Ha
+Asosiy maqsad	Vazifalar progressini tashkil qilish	Hisoblashni tezlashtirish
+Misol	Bir oshpaz bir nechta buyurtmani boshqaradi	    Bir nechta oshpaz bir vaqtda ishlaydi

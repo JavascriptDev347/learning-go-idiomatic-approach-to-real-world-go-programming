@@ -1,0 +1,58 @@
+Goroutine nima? 
+    Go runtime boshqaruvida ishlaydigan yengil vaznli (lightweight) virtual oqim.
+
+OS Thread bilan farqi:
+  Operatsion tizim oqimlari (threads) odatda 1–2 MB qat’iy xotira 
+  (stack) oladi va ularni yaratish/almashtirish (context switch) juda qimmat.
+  
+  Goroutina atigi 2 KB atrofidagi xotira bilan boshlanadi va 
+  ehtiyojga qarab dinamik kengayadi yoki qisqaradi. Shu sababli,
+   Go’da yuz minglab goroutinalarni parallel ishga tushirish muammo tug‘dirmaydi.
+
+
+
+Go'da Goroutine qanday ishlaydi?
+
+Go scheduler uchta muhim tushunchadan foydalanadi:
+    - G — Goroutine.
+    - M — Machine (OS Thread).
+    - P — Processor (Go Runtime scheduler uchun execution resource).
+
+G — nima bajarilishi kerak?
+M — qaysi OS thread bajaradi?
+P — Go Runtime'da bajarish uchun kerakli resurs.
+
+
+Concurrency va Parallelism qachon kerak?
+
+I/O-Bound Tasks 
+I/O — Input/Output.
+
+Masalan:
+- Database'dan ma'lumot olish.
+- HTTP API'ga request yuborish.
+- Fayl o'qish.
+- Redis'dan ma'lumot olish.
+Tasavvur qil:
+
+Backend servering bir vaqtning o'zida 1000 ta foydalanuvchidan request oldi.
+
+Har bir request database'dan ma'lumot kutyapti.
+Agar bularni ketma-ket bajarsang, har bir operatsiya tugashini kutishga
+ ko'p vaqt ketadi.
+Concurrency yordamida bir request database javobini kutayotgan paytda 
+boshqa request'lar ham ishlashi mumkin.
+
+
+CPU-Bound Tasks
+Bunda vazifa CPU hisoblash resursidan ko'p foydalanadi.
+Masalan:
+- Katta matematik hisob-kitoblar.
+- Video encoding.
+- Image processing.
+- Katta ma'lumotlarni qayta ishlash.
+- Murakkab algoritmlar.
+Bunday vazifalarda parallelism foyda beradi.
+
+Masalan, 1 milliardta sonni qayta ishlash kerak. Ishni 4 qismga ajratib, 
+4 ta CPU core'da parallel bajarish mumkin.
