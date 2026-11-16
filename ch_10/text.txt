@@ -1,0 +1,56 @@
+Go is based around three concepts:
+    repositories
+    modules
+    packages
+
+
+repositories:
+    It is a place in a version control system where the source code 
+    for a project is stored.
+
+modules:
+    A module is a bundle of Go source code that’s distributed and versioned 
+    as a single unit. Modules are stored in a repository. Modules consist of 
+    one or more packages, which are directories of source code. 
+    
+packages:
+    Packages give a module organization and structure.
+
+
+Repository (Repozitoriy):
+    Versiyalarni boshqarish tizimida (masalan, GitHub, GitLab) loyihaning manba 
+    kodi saqlanadigan joy
+
+Module (Modul): 
+    Bitta yaxlit birlik sifatida tarqatiladigan va versiyalanadigan 
+    Go manba kodlari to‘plami. Har bir modulning ildizida uning global identifikatori
+    va bog‘liqliklarini belgilab beruvchi `go.mod` fayli bo‘ladi.
+
+Package (Paket): 
+    Modul ichidagi bitta katalogda (papkada) joylashgan `.go` fayllar
+    to‘plamidir. Modul bir yoki bir nechta paketlardan tashkil topadi va aynan paketlar 
+    kodni mantiqiy guruhlash hamda nomlar maydonini (namespace) ajratish uchun xizmat 
+    qiladi
+
+`import _ "package"` — blank import.
+ Paketdagi hech narsani to‘g‘ridan-to‘g‘ri ishlatmasdan, 
+ faqat undagi `init()` funksiyasini ishga tushirish uchun qo‘llanadi
+
+
+Vendoring (`go mod vendor`)
+
+* `go mod vendor` buyrug‘i loyiha ildizida **vendor/** katalogini yaratadi va barcha tashqi bog‘liqliklarning manba kodlarini o‘sha yerga nusxalab qo‘yadi[17].
+* **Qachon kerak?** CI/CD serverlari har safar noldan ishga tushadigan (ephemeral) bo‘lsa va har safar kutubxonalarni internetdan qayta tortib vaqt yo‘qotmaslik zarur bo‘lganda[18].
+* **Kamchiligi:** Repozitoriy hajmini (codebase size) sezilarli darajada kattalashtirib yuboradi
+
+
+Internal paketi va uning cheklovi
+Vazifasi: Modul ichidagi paketlar o‘zaro umumiy kod, tip yoki funksiyalardan
+foydalanishi, biroq ushbu kod tashqi foydalanuvchilar (public API) uchun yopiq
+ bo‘lishi zarur bo‘lganda `internal` katalogidan foydalaniladi.
+Ko‘rinish doirasi: `internal` paketi va uning ostidagi barcha sub-paketlardagi
+ eksport qilingan identifikatorlarni faqat **internal** **ning bevosita ota paketi
+  (direct parent)** hamda **uning bilan bir papkada joylashgan parallel paketlar
+   (sibling packages)** import qila oladi[9]. Tashqi modullar yoki yuqoriroq/pastki
+    bo‘lmagan boshqa paketlar uni import qilishga uringanda, Go kompilyatori xatolik
+     beradi (`use of internal package ... not allowed`)
