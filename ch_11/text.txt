@@ -1,0 +1,94 @@
+Jon Bodnerning **"Learning Go" (2-nashr)** kitobidagi **11-bob ("Go Tooling" / "Go Uskunalari")** dasturchining kundalik ish faoliyatini yengillashtiruvchi, kod sifatini oshiruvchi va xavfsizlikni ta’minlovchi o‘rnatilgan hamda tashqi asboblarga bag‘ishlangan.
+
+Go tilining eng katta kuchlaridan biri — uning boy va yagona ekotizimga birlashtirilgan asboblar to‘plamidir (`tooling`).
+
+Quyida 11-bobning barcha asosiy bo‘limlari va vositalari keltirilgan:
+
+---
+
+### 1. Tashqi vositalarni o‘rnatish: `go install`
+* Go 1.16 dan boshlab `go get` faqat `go.mod` ga bog‘liqliklarni qo‘shish uchun xizmat qiladi.
+* Bajariluvchi binar dasturlarni (CLI tools) global tizimga o‘rnatish uchun **`go install`** ishlatiladi:
+  ```bash
+  go install golang.org/x/tools/cmd/stringer@latest
+  ```
+* O‘rnatilgan binar fayl `$GOPATH/bin` (yoki `$HOME/go/bin`) katalogiga tushadi va terminal orqali to‘g‘ridan-to‘g‘ri ishga tushiriladi.
+
+---
+
+### 2. Kod sifatini tekshirish: Linterlar va `golangci-lint`
+* **`go vet`:** Go bilan birga keladigan asosiy tekshiruvchi bo‘lib, shubhali kod konstruksiyalarini aniqlaydi.
+* **`staticcheck`:** `go vet` dan ancha aqlli va ilg‘or statik tahlil vositasi bo‘lib, xatolarni chuqur tahlil qiladi.
+* **`golangci-lint`:** Professional Go loyihalarining deyarli barchasida ishlatiladigan universal linter runner. U o‘nlab turli xil linterlarni (jumladan `errcheck`, `unused`, `govet`, `staticcheck`) bitta buyruq ostida parallel va chaqmoqdek tez ishga tushiradi.
+
+---
+
+### 3. Zaifliklarni tekshirish: `govulncheck` (Go 1.18+)
+Go jamoasi rasmiy **Vulnerability Database** (zaifliklar ma’lumotlar bazasi)ni yaratgan.
+* Boshqa tillardagi skanerlar (masalan, `npm audit`) faqat kutubxona nomiga qarab shovqinli xatolar chiqaradi.
+* **`govulncheck`ning kuchi:** U sizning kodingizni chaqiruvlar daraxti (call graph) bo‘yicha tahlil qiladi. Agar tashqi kutubxonada xavfsizlik teshigi bo‘lsa-yu, lekin siz o‘sha zaif funksiyani **hech qachon chaqirmayotgan bo‘lsangiz**, u sizni behuda bezovta qilmaydi. U faqat kodingiz haqiqatan ham xavfli funksiyaga yetib borsa ogohlantiradi.
+  ```bash
+  go install golang.org/x/vuln/cmd/govulncheck@latest
+  govulncheck ./...
+  ```
+
+---
+
+### 4. Kodni avtomatik generatsiya qilish: `go generate`
+* Ko‘pincha takroriy kodlarni qo‘lda yozish o‘rniga maxsus vositalar orqali generatsiya qilish talab etiladi.
+* Buning uchun kod ichiga maxsus direktiva (sharh) yoziladi:
+  ```go
+  //go:generate <buyruq> <parametrlar>
+  ```
+  *(Muhim: `//` va `go:generate` orasida bo‘sh joy bo‘lmasligi shart).*
+* **`stringer` vositasi:** `iota` orqali yaratilgan konstantalarni chiroyli satr ko‘rinishida chiqarish (`String()` metodini avtomatik yozish) uchun keng qo‘llanadi:
+  ```go
+  //go:generate go run golang.org/x/tools/cmd/stringer -type=CardSuit
+  ```
+* Barcha direktivalarni ishga tushirish uchun bitta buyruq beriladi:
+  ```bash
+  go generate ./...
+  ```
+
+---
+
+### 5. Fayllarni binar ichiga joylashtirish: `//go:embed` (Go 1.16+)
+Ilgari HTML shablonlar, rasm yoki SQL fayllarni dastur bilan birga tarqatish uchun ularni alohida fayl qilib yetkazib berish kerak edi. `embed` paketi bu muammoni hal qiladi:
+* Kompilyatsiya vaqtida ko‘rsatilgan tashqi fayllar to‘g‘ridan-to‘g‘ri **yagona binar fayl ichiga tikib yuboriladi**.
+* **Uch xil ko‘rinishda joylash mumkin:**
+  1. **`string`:** Bitta matnli fayl uchun (masalan, SQL skript yoki litsenziya matni):
+     ```go
+     import _ "embed"
+
+     //go:embed passwords.txt
+     var passwords string
+     ```
+  2. **`[]byte`:** Binar fayllar (masalan, rasm yoki ikonka) uchun:
+     ```go
+     //go:embed logo.png
+     var logo []byte
+     ```
+  3. **`embed.FS`:** Butun bir papkani (masalan, frontend HTML/CSS/JS fayllari to‘plamini) fayl tizimi ko‘rinishida joylash uchun:
+     ```go
+     import "embed"
+
+     //go:embed static/*
+     var staticFiles embed.FS
+     ```
+
+---
+
+### 6. Shartli kompilyatsiya: Build Tags (Go Build Tags)
+* Agar kodingiz ma’lum bir operatsion tizimda (Linux, Windows, macOS) yoki ma’lum bir holatda (masalan, faqat integratsion testlar vaqtida) ishlashi kerak bo‘lsa, faylning eng birinchi qatoriga maxsus teglarni yozasiz:
+  ```go
+  //go:build pro
+  ```
+* Dasturni kompilyatsiya qilayotganda ushbu tegni ko‘rsatasiz:
+  ```bash
+  go build -tags pro
+  ```
+* Agar fayl nomi `_linux.go` yoki `_windows.go` bilan tugasa, Go kompilyatori uni avtomatik ravishda faqat o‘sha operatsion tizimda kompilyatsiya qiladi.
+
+---
+
+🛠️ 11-bobning qaysi mavzusi (masalan, **`//go:embed`** amaliyoti, **`stringer` bilan `go:generate`** yoki **`govulncheck`**) sizga eng qiziq tuyulyapti? Uni batafsilroq ko‘rib chiqishimiz mumkin!
