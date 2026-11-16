@@ -1,0 +1,56 @@
+errors.New("") 
+        - Statik xolatdagi errorlarni qaytarish uchun ishlatiladi
+
+fmt.Errorf("")
+        - Dinamik o'zgaruvchilar qiymatini xato matniga formatlab qo'shib qaytarish uchun
+    
+Sentinel Errors
+        - Dasturning joriy holati tufayli jarayonni davom ettirib bo‘lmasligini 
+        bildiruvchi, paket darajasida e’lon qilingan global, o‘zgarmas xato 
+        qiymatlaridir.
+        
+        - Odatda `Err` prefiksi bilan boshlanadi 
+        masalan: `zip.ErrFormat`, `context.Canceled`, `os.ErrNotExist`
+
+
+Wrapp Error
+       Xato quyi funksiyalardan yuqoriga qaytayotganda, unga kontekst qo‘shish 
+       (qaysi funksiyada yuz bergani yoki nima qilinayotgani) juda foydali.
+       %w** **verbi:** `fmt.Errorf` funksiyasida `%w` orqali xato o‘raladi (`wrap`)
+       
+       return fmt.Errorf("in fileChecker: %w", err)
+
+Unwrap metodi
+        Xatoni ochish uchun `errors.Unwrap(err)` ishlatiladi yoki 
+        maxsus strukturalarda `Unwrap() error` metodi yoziladi
+        Xatoni yashirish (O‘ramaslik): Agar ichki xato 
+        tafsilotlarini tashqariga chiqarishni xohlamasangiz (masalan, maxfiy 
+        ma’lumotlar yoki ichki realizatsiya sirlari),
+        `%w` o‘rniga oddiy `%v` ishlating
+
+Wrapping Multiple Errors
+        Bir nechta errorlarni bitta errorga qaytarish uchun Join ishlatiladi
+        return errors.Join(err1,err2,err3)
+        yoki
+        `fmt.Errorf`da bir nechta `%w` ishlatish ham mumkin
+
+
+Agar xatolik wrap qilib yuborilgan bo'lsa uni == yoki != orqali to'g'ridan to'g'ri 
+tekshirib bo'lmaydi. BUnga error.Is va error.As yordam beradi
+
+Muayyan **instansiya yoki qiymatni** tekshirish uchun — `errors.Is`; 
+muayyan **turni** topish va ma’lumotini olish uchun — `errors.As` ishlatiladi
+
+errors.Is
+        Xato daraxti ichida muayyan sentinel xato bor-yo‘qligini tekshiradi.
+        if errors.Is(err, os.ErrNotExist) { fmt.Println("Fayl mavjud emas!") }
+
+
+Panic and recover
+        Panic bo‘lganda funksiya darhol to‘xtaydi, unga biriktirilgan barcha 
+        `defer`lar ishga tushadi, so‘ng chaqirgan funksiyaga o‘tadi va 
+        `main`gacha yetib borib, dastur stack trace bilan qulaydi
+
+recover 
+        panicni toxtatib qolish logikasi u faqat defer ichida yoziladi.
+        
