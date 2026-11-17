@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func main() {
+func main1() {
 	var wg sync.WaitGroup
 	var mu sync.Mutex
 	t := time.Now()

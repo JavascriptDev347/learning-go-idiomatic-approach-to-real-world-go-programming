@@ -51,3 +51,13 @@ type Todo struct {
 	Title     string `json:"title"`
 	Completed bool   `json:"completed"`
 }
+
+type PostsResult struct {
+	Posts []Post
+	Err   error
+}
+
+type CommentsResult struct {
+	Comments []Comment
+	Err      error
+}
