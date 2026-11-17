@@ -1,1 +1,43 @@
-Standart library
+encoding/json
+    REST APIs have enshrined JSON as the standard way to communicate between 
+    services, and Go’s standard library includes support for converting Go data 
+    types to and from JSON. The word marshaling means converting from a Go data
+    type to an encoding, and unmarshaling means converting to a Go data type.
+
+
+When unmarshaling from JSON into a struct field with no json tag, the name match
+is case-insensitive. When marshaling a struct field with no json tag back to JSON,
+the JSON field will always have an uppercase first letter, because the field is 
+exported
+
+
+Marshal   = Go   --> JSON
+Unmarshal = JSON --> Go (decode)
+
+Marshal — Go ma'lumotini JSON []byte ga aylantiradi.
+Unmarshal — JSON []byte ni Go ma'lumotiga aylantiradi.
+Encoder — Go ma'lumotini JSON ko'rinishida io.Writer ga yozadi.
+Decoder — io.Reader dan JSON o'qib, Go ma'lumotiga aylantiradi.
+
+Marshaling (Marshal): 
+        Go ma’lumot turini (masalan, struct, map yoki slice) tashqi uzatish
+        formatiga — `[]byte` ko‘rinishidagi JSON matniga aylantirish
+        Muhim jihat: Marshal() natijani avtomatik ravishda HTTP response'ga
+        yubormaydi. U faqat JSON byte'larini qaytaradi.
+
+Unmarshaling (Unmarshal):
+        JSON matnini (`[]byte`) Go ma’lumot turiga (odatda struct’ga)
+        yuklash va o‘qish
+
+
+`json.Unmarshal` va nega Pointer (`&amp;`) uzatiladi?
+        Generiklardan oldin yaratilgani: Bu funksiya Go tiliga generiklar 
+        qo‘shilishidan ancha oldin yozilgan bo‘lib, `any` qabul qiluvchi funksiya
+        qaysi tipdagi struct’ni yaratib qaytarishni oldindan bilolmasdi.
+        
+        Xotira va GC nazorati (Memory allocation): `io.Reader` kabi, tayyor 
+        xotiraga ega struct’ni parametr sifatida uzatish orqali dasturchi xotira 
+        ajratishni o‘zi nazorat qiladi. Agar bu amaliyot sikl (loop) ichida
+        chaqirilsa, bitta struct’ni qayta-qayta ishlatish mumkin, natijada 
+        har safar heap’da yangi obyekt yaratilmaydi va Garbage Collector yuki 
+        kamayadi 
