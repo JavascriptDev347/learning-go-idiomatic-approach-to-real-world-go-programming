@@ -1,0 +1,9 @@
+Agar goroutina bir nechta kanallar bilan bir vaqtda ishlashi
+ kerak bo‘lsa, `select` ishlatiladi:
+
+ Structure: select {
+     case v := <-ch1: fmt.Println("ch1 dan keldi:", v)
+     case ch2 <- 10: fmt.Println("ch2 ga yozildi") 
+     case <-time.After(1 \* time.Second): fmt.Println("Timeout bo'ldi!") 
+     default: fmt.Println("Hech bir kanal tayyor emas") 
+    }

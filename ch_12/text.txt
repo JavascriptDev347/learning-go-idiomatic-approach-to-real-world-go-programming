@@ -19,9 +19,9 @@ Concurrency — bir nechta vazifani bir-birining bajarilishi davomida boshqarish
 
 Parallelism — bir nechta vazifani aynan bir vaqtda bajarish.
 
-Xususiyat	    Concurrency	                            Parallelism
-Ma'nosi	        Vazifalarni birgalikda boshqarish	    Vazifalarni bir vaqtda bajarish
-Bitta CPU core	Ha	                                    Yo'q
-Bir nechta core	Ha	                                    Ha
-Asosiy maqsad	Vazifalar progressini tashkil qilish	Hisoblashni tezlashtirish
-Misol	Bir oshpaz bir nechta buyurtmani boshqaradi	    Bir nechta oshpaz bir vaqtda ishlaydi
+Xususiyat	       Concurrency	                              Parallelism
+Ma'nosi	         Vazifalarni birgalikda boshqarish	        Vazifalarni bir vaqtda bajarish
+Bitta CPU core	 Ha	                                        Yo'q
+Bir nechta core	 Ha	                                        Ha
+Asosiy maqsad	   Vazifalar progressini tashkil qilish	      Hisoblashni tezlashtirish
+Misol	Bir oshpaz bir nechta buyurtmani boshqaradi	      Bir nechta oshpaz bir vaqtda ishlaydi
