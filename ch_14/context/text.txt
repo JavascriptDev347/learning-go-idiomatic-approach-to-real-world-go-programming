@@ -1,0 +1,58 @@
+Context nega kerak? 
+
+ Go serverlarida (masalan, HTTP serverda) har bir kelgan so‘rov alohida
+ goroutinada ishlaydi. Bu goroutina o‘z navbatida ma'lumotlar bazasiga,
+ keshga yoki boshqa mikroservislarga murojaat qilish uchun qo‘shimcha
+ goroutinalarni ishga tushirishi mumkin.
+
+ Foydalanuvchi brauzerda biror sahifani ochdi, lekin yuklanishi sekin bo‘lgani
+ uchun 1 soniyadan keyin sahifani yopib yubordi yoki boshqa sahifaga o‘tib ketdi.
+
+ Agar kontekst bo‘lmasa: serveringiz orqa fonda bazadan ma'lumot qidirishni,
+ og‘ir hisob-kitoblarni qilishni davom ettiraveradi. Bu esa kompyuter resurslarini 
+ behuda sarflashga va goroutine leakka olib keladi.
+
+ Kontekst bilan: Foydalanuvchi aloqani uzishi bilan butun zanjir bo‘ylab
+ "Bekor qilindi!" signali yuboriladi va barcha bog‘liq goroutinalar o‘z ishini
+  darhol to‘xtatadi.
+
+
+Context 2 ta vazifasi bor:
+ 1. Cancellation (Bekor qilish va Deadline/Timeout belgilash): Jarayonni 
+ to‘xtatish kerakligini bildirish.
+ 
+ 2. Metadata uzatish (Values): So‘rov doirasidagi ma'lumotlarni (masalan, 
+ `request_id`, tizimga kirgan foydalanuvchi ma'lumotlari) funksiyadan funksiyaga 
+ o‘tkazish.
+
+ context.Background(): Eng ko‘p ishlatiladigan boshlang‘ich kontekst. Odatda 
+ `main()` funksiyasida yoki so‘rovlar boshlangan joyda yaratiladi.
+ context.TODO(): Agar hozircha qaysi kontekstni ishlatishni bilmasangiz yoki 
+ kelajakda qo‘shishni rejalashtirgan bo‘lsangiz, vaqtinchalik joy ushlab 
+ turuvchi (placeholder) sifatida ishlatiladi.
+
+
+
+
+Values:
+ `context.WithValue` va `ctx.Value` qanday ishlaydi?
+
+
+ Qiymat qo‘shish: `context.WithValue`
+ ctx = context.WithValue(parentContext, key, value)
+ `key` va `value` parametrlari `any` (bo‘sh interfeys) turida bo‘ladi.
+ Muhim qoida (Immutability): `context.WithValue` mavjud kontekstning o‘zini
+ o‘zgartirmaydi. U ota kontekstni o‘rab oluvchi (`wraps`) yangi bola (child) 
+ kontekst qaytaradi. Kontekst zanjiri orqali ma’lumot faqat yuqoridan pastga
+ (chuqurroq qatlamlarga) o‘tadi, hech qachon pastdan yuqoriga qaytmaydi
+
+ Qiymatni o‘qish: `ctx.Value`
+
+ val := ctx.Value(key)
+
+ `Value(key)` metodi berilgan kontekstdan va uning barcha ota kontekstlaridan 
+kalitni qidiradi.
+  Qidiruv chiziqli (linear search) amalga oshiriladi (zanjir bo‘yicha yuqoriga
+  qarab)
+  Natija `any` sifatida qaytgani sababli, qiymatni o‘qishda doimo comma ok
+  idiomasidan foydalanib type assertion qilinadiw
