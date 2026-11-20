@@ -1,0 +1,1 @@
+For a program to be useful, it needs to read in and write out data. The heart of Go’s input/output philosophy can be found in the io package. In particular, two interfaces defined in this package are probably the second and third most-used interfaces in Go: io.Reader and io.Writer

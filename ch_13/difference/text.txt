@@ -1,15 +1,15 @@
         Vaziyat	                                          Tavsiya
-HTTP request body'dan JSON olish	                    NewDecoder()
+HTTP request body'dan JSON olish	                NewDecoder()
 HTTP response'ga JSON yuborish      	                NewEncoder()
-Tayyor JSON []byte ni struct'ga o'tkazish	            Unmarshal()
+Tayyor JSON []byte ni struct'ga o'tkazish	        Unmarshal()
 Struct'ni JSON []byte ga aylantirish	                Marshal()
-JSON'ni DB yoki boshqa joyga byte sifatida saqlash	    Marshal()
-Tayyor JSON byte'larini boshqa joyga yozish	            Unmarshal() yoki NewDecoder()
+JSON'ni DB yoki boshqa joyga byte sifatida saqlash	Marshal()
+Tayyor JSON byte'larini boshqa joyga yozish	        Unmarshal() yoki NewDecoder()
 
 
 
 Funksiya	                        Pointer kerakmi?	            Sababi
-json.Marshal(user)	                Yo'q	                        Struct'dan JSON yaratadi, asl struct'ni o'zgartirmaydi
-json.NewEncoder(w).Encode(user)	    Yo'q	                        Struct'ni o'qib, writer'ga yozadi
+json.Marshal(user)	                Yo'q	                            Struct'dan JSON yaratadi, asl struct'ni o'zgartirmaydi
+json.NewEncoder(w).Encode(user)	        Yo'q	                            Struct'ni o'qib, writer'ga yozadi
 json.Unmarshal(data, &user)	        Ha	                            Struct ichidagi qiymatlarni o'zgartiradi
 json.NewDecoder(r).Decode(&user)	Ha	                            Struct ichidagi qiymatlarni o'zgartiradi

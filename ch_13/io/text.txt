@@ -1,0 +1,22 @@
+Goda ma'lumotlar qayerdan kelishiddan qatiy nazar (fayl, tarmoq, HTTP body, 
+ xotiradagi string, gzip arxiv, terminal)
+ hammasi bitta interface orqali o'qiladi va yoziladi.
+
+
+nega Read slice qaytarmaydi, balki uni tashqaridan oladi? 
+ Javobi: agar Read har safar yangi slice qaytarsa, har chaqiruvda yangi xotira 
+ ajratilardi va u heap’ga tushardi. Garbage collector esa ortiqcha ishlashga 
+ majbur bo’lardi. Hozirgi dizaynda buffer bir marta yaratiladi va qayta-qayta 
+ ishlatiladi.
+
+
+io.EOF nima? Bu tugash signali xatolik emas, lekin uning tipi error sentinental error
+
+
+
+io.Writer ?
+ bu io.Readerni teskarisi hisoblanadi.
+ Unga bayt slice beriladi va u o’sha baytlarni qayergadir yozadi. Natijada nechta 
+ bayt yozilgani (n) va xato (err) qaytadi. Muhim qoida: agar n slice uzunligidan 
+ kichik bo’lsa, ya’ni hamma bayt yozilmagan bo’lsa, Write albatta xato qaytarishi 
+ kerak.

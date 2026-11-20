@@ -19,7 +19,10 @@ Quyida 11-bobning barcha asosiy bo‘limlari va vositalari keltirilgan:
 ### 2. Kod sifatini tekshirish: Linterlar va `golangci-lint`
 * **`go vet`:** Go bilan birga keladigan asosiy tekshiruvchi bo‘lib, shubhali kod konstruksiyalarini aniqlaydi.
 * **`staticcheck`:** `go vet` dan ancha aqlli va ilg‘or statik tahlil vositasi bo‘lib, xatolarni chuqur tahlil qiladi.
-* **`golangci-lint`:** Professional Go loyihalarining deyarli barchasida ishlatiladigan universal linter runner. U o‘nlab turli xil linterlarni (jumladan `errcheck`, `unused`, `govet`, `staticcheck`) bitta buyruq ostida parallel va chaqmoqdek tez ishga tushiradi.
+* **`golangci-lint`:** Professional Go loyihalarining deyarli barchasida 
+ishlatiladigan universal linter runner. U o‘nlab turli xil linterlarni (jumladan 
+`errcheck`, `unused`, `govet`, `staticcheck`) bitta buyruq ostida parallel va 
+chaqmoqdek tez ishga tushiradi.
 
 ---
 
