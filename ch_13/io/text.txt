@@ -20,3 +20,45 @@ io.Writer ?
  bayt yozilgani (n) va xato (err) qaytadi. Muhim qoida: agar n slice uzunligidan 
  kichik bo’lsa, ya’ni hamma bayt yozilmagan bo’lsa, Write albatta xato qaytarishi 
  kerak.
+
+
+ Funksiya	        Turi	                Bir so’z bilan
+io.Copy	            funksiya	            ko’chiradi
+io.ReadAll	        funksiya	            hammasini oladi
+io.LimitReader	    Reader decorator	    cheklaydi
+io.MultiReader	    Reader decorator	    ketma-ket ulaydi
+io.TeeReader	    Reader decorator	    o’qiyotib nusxalaydi
+io.MultiWriter	    Writer decorator	    ko’p joyga tarqatadi
+
+
+io.Closer: “ishim tugadi, resursni qaytaraman”
+
+Nima u?
+Fayl, tarmoq ulanishi va HTTP body ochilganda OS ulardan har biri uchun resurs
+(file descriptor) ajratadi. Close() shu resursni OS’ga qaytaradi.
+
+Nega kerak?
+OS bir vaqtda ochiq turishi mumkin bo’lgan fayllar sonini cheklaydi. Yopmasangiz,
+ ular to’planib boradi (bunga resource leak deyiladi) va bir kun dastur too many
+ open files xatosi bilan to’xtaydi.
+
+ Kutubxonadagi kitob misoli: kitobni olasiz, o’qib bo’lgach qaytarasiz. Hamma
+ kitobni olib qaytarmasa, javon bo’shab qoladi va boshqalarga kitob qolmaydi.
+
+
+
+
+
+io.Seeker: kerakli joyga sakrash
+
+Nima u?
+Odatda Read boshidan oxirigacha ketma-ket o’qiydi. Seek esa o’qish joyini istalgan nuqtaga ko’chiradi.
+
+Video pleyer misoli: Read videoni ketma-ket ko’rsatadi, Seek esa perotkani surib, kerakli daqiqaga o’tkazadi.\
+Seek(offset int64, whence int)
+
+
+f.Seek(0, io.SeekStart)    // boshiga qaytish
+f.Seek(10, io.SeekStart)   // 10-baytga o'tish
+f.Seek(-5, io.SeekEnd)     // oxiridan 5 bayt oldinga
+f.Seek(3, io.SeekCurrent)  // hozirgi joydan 3 bayt oldinga

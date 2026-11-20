@@ -1,0 +1,12 @@
+written, err := io.Copy(dst, src)
+
+io.Copy(dst, src)          // faylni nusxalash
+io.Copy(os.Stdout, file)   // faylni terminalga chiqarish
+io.Copy(file, resp.Body)   // internetdan yuklab, faylga saqlash
+io.Copy(w, file)           // faylni brauzerga jo'natish (server)
+
+Nega written ning tipi int64, int emas?
+ Fayllar juda katta bo’lishi mumkin. 32 bitli tizimlarda int ko’pi bilan ~2 GB 
+ gacha son sig’diradi, int64 esa har qanday tizimda juda katta sonlarni saqlaydi. 
+ Shuning uchun fayl hajmi bilan bog’liq hamma joyda int64 ishlatiladi, masalan 
+ info.Size() ham int64 qaytaradi.
