@@ -1,0 +1,8 @@
+time.Parse: converter string to time
+
+time.Duration: vaqt oralig'ini beradi va in64 ustiga qurilgan, uining eng kichik birligi nanosekund bu qancha vaqt degan savolga javob beradi
+
+time.Time: qachon degan savolga javob beradi
+
+Duration: “dars 1 soat 20 daqiqa davom etadi”
+Time: “dars soat 14:00 da boshlanadi”
