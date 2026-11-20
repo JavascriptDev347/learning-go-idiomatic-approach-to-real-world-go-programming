@@ -1,0 +1,9 @@
+Unmarshal:
+    JSON - Go
+
+Nega &p kerak?
+  6-bobni eslang: Go’da hamma narsa qiymat bo’yicha uzatiladi. p ni o’zini bersangiz, 
+  Unmarshal uning nusxasini to’ldiradi va sizning p bo’shligicha qoladi. Pointer 
+  bersangiz, aynan sizning p ingiz to’ldiriladi.
+
+  Agar & ni unutsangiz, xato qaytadi: json: Unmarshal(non-pointer main.Product).
