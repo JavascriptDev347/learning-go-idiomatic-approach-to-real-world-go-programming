@@ -7,3 +7,8 @@ Nega &p kerak?
   bersangiz, aynan sizning p ingiz to’ldiriladi.
 
   Agar & ni unutsangiz, xato qaytadi: json: Unmarshal(non-pointer main.Product).
+
+Unmarshal: posilkani avval uyga to’liq olib kirasiz, keyin ochasiz.
+Decoder: posilkalar konveyerda kelyapti, har birini tushishi bilan ochasiz.
+
+Unmarshal tayyor []byte dagi bitta JSON uchun, Decoder esa Reader’dan oqib kelayotgan bitta yoki bir nechta JSON uchun.

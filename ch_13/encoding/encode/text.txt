@@ -1,0 +1,2 @@
+json.Encoder Writer’ga to’g’ridan-to’g’ri JSON yozadi
+json.NewEncoder(w).Encode() => io.Writer

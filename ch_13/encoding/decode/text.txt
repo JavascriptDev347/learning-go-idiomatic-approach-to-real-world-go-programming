@@ -1,0 +1,2 @@
+json.Decoder esa Reader’dan to’g’ridan-to’g’ri JSON o’qiydi.
+json.NewDecoder(r).Decode() => io.Reader
