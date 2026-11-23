@@ -1,0 +1,7 @@
+`*testing.T` obyektida xatoni bildirish uchun 4 ta asosiy metod mavjud
+
+t.Error -> fmt.Print kabi ishlaydi, test davom etadi, bir biriga bog'liq bo'lmagan nechta maydonni tekshirishganda
+t.Errorf -> fmt.Printf kabi ishlaydi, test davom etadi, xabarni formatlab chiqarish uchun
+
+t.Fatal -> fmt.Print kabi ishlaydi, test darxol tugaydi, Keyingi tekshiruvlar `panic` berishi aniq bo‘lsa (masalan, fayl ochilmadi, DB ulanmadi)
+t.Fatalf -> fmt.Printf kabi ishlaydi, test darxon tugaydi, xabarni formatlab chiqaradida.
