@@ -1,0 +1,44 @@
+reflect:
+    turlar bilan compilatsiya vaqtida emas, runtimeda ishlash
+
+    Odatda Go kompilyatsiya paytida har bir o'zgaruvchining turini biladi. 
+    var x int yozsangiz, kompilyator x butun son ekanini oldindan biladi.
+
+
+Type: reflect.Typeof(x) -> aniq turni 
+
+Kind: turning qaysi toifadan ekanligini qaytaradi. Int, String, Struct, Slice...
+      Kindlar ro'yhati cheklangan va o'zgarmaydi
+
+Value: qiymatning o'zi va u bilan ishlash imkoniyati.
+
+
+ Go'da interfeys aslida ikki qismli quti: ichida (tur, qiymat) juftligi saqlanadi. 
+ Interfeys faqat ikkalasi ham bo'sh bo'lganda nil hisoblanadi.
+ 
+ Go qat’iy tiplangan (statically typed) til bo‘lsa-da, ba’zida dastur 
+  yozilayotgan paytda mavjud bo‘lmagan ma’lumotlar bilan runtime (ishga tushish)
+  vaqtida ishlashga to‘g‘ri keladi. Refleksiya (reflect paketi)
+  aynan shunday paytda o‘zgaruvchilarning turlari va qiymatlarini runtime davrida 
+  tekshirish, o‘zgartirish yoki yangidan yaratish imkonini beradi
+
+Type (Tur) va reflect.TypeOf:
+    `Type` — bu o‘zgaruvchining qanday xususiyatlarga ega ekanligini, nimani 
+    saqlashi va u bilan qanday amallarni bajarish mumkinligini belgilaydi
+
+    O‘zgaruvchining turini olish uchun reflect.TypeOf(v) chaqiriladi va u 
+    `reflect.Type` interfeysini qaytaradi
+
+`reflect.Type` metodlari:
+    Name(): Turning nomini qaytaradi (masalan, `int` yoki `Foo`). 
+    Lekin ko‘rsatkich (`pointer`) yoki `slice` kabi turlar o‘z nomiga ega 
+    bo‘lmagani uchun bo‘sh satr (`""`) qaytaradi.
+
+    Elem(): Boshqa turni o‘z ichiga olgan turlar (ko‘rsatkichlar, slayslar, 
+    maplar, kanallar) uchun ichki/asosiy turni ajratib beradi. Masalan, 
+    `int` turiga `Elem()` chaqirilsa, `int` turini olib beradi
+
+    NumField() va Field(i): Struct turlari uchun uning ichida nechta maydon 
+    borligini sanaydi va har bir maydonning nomi, tartibi, turi hamda struct 
+    teglari (`struct tags`) haqidagi ma’lumotlarni (`reflect.StructField`) 
+    qaytaradi.
