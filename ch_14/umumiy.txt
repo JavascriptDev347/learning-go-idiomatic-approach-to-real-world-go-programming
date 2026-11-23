@@ -1,0 +1,30 @@
+Context bitta request yoki operatsiya bilan bog'liq 3 narsani funksiyalar 
+va goroutine'lar orqali uzatib boradi:
+    bekor qilish signali (client uzildi, ishni to'xtat)
+    vaqt chegarasi (2 soniyadan oshsa, to'xtat)
+    request'ga tegishli qiymatlar (request ID, user)
+
+Context nega structda saqlanmaydi?
+ Context bitta request "umri" bilan yashaydi. Struct esa ko'pincha undan uzoqroq 
+ yashaydi. Contextni struct'da saqlasangiz, qaysi request'ning contexti ekani va 
+ qachon tugashi noaniq bo'lib qoladi. Parametr qilib bersangiz, ma'lumot oqimi 
+ aniq ko'rinadi. Kelishuv: birinchi parametr, nomi ctx.
+
+
+context.Background() va context.TODO() farqi ?
+ Background(): main, testlar va boshlang'ich nuqtalarda ishlatiladi.
+ TODO(): "bu yerga context kerak, lekin qaysi biri hali bilmayman" degani. 
+ Odatda refactoring paytida vaqtincha qo'yiladi va production kodda qolmasligi 
+ kerak.
+
+Done() <-chan struct{} qaytaradi. Kanal uch holatda yopiladi: cancel chaqirilganda, 
+ deadline o'tganda yoki ota bekor qilinganda. Yopiq kanaldan o'qish darhol qaytadi. 
+ Shuning uchun bitta yopilish barcha kutayotgan goroutine'larga birdaniga signal 
+ beradi (broadcast). Background().Done() esa nil qaytaradi va hech qachon tugamaydi.
+
+
+
+Err() uch xil qiymat qaytaradi:
+ nil: context hali faol
+ context.Canceled: qo'lda bekor qilingan
+ context.DeadlineExceeded: vaqt tugagan 
