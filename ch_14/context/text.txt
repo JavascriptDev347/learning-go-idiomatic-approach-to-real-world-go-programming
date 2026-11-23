@@ -31,7 +31,10 @@ Context 2 ta vazifasi bor:
  kelajakda qo‘shishni rejalashtirgan bo‘lsangiz, vaqtinchalik joy ushlab 
  turuvchi (placeholder) sifatida ishlatiladi.
 
-
+Context bitta so'rov bilan birga funksiyalar va goroutine'lar bo'ylab uzatiladigan
+immutable obyekt. U uch narsani olib yuradi: bekor qilish signali, vaqt chegarasi
+va request-scoped qiymatlar. Context goroutine'larni o'zi to'xtatmaydi, faqat 
+Done() orqali signal beradi. Kod shu signalni tinglab o'zi chiqib ketadi.
 
 
 Values:
@@ -56,3 +59,11 @@ kalitni qidiradi.
   qarab)
   Natija `any` sifatida qaytgani sababli, qiymatni o‘qishda doimo comma ok
   idiomasidan foydalanib type assertion qilinadiw
+
+
+
+
+  // context.Background() -> for creating a root context, which is never canceled,
+	//  has no values, and has no deadline. It is typically used in main functions,
+   initialization, and tests, and as the top-level Context for incoming requests.
+	
