@@ -1,0 +1,64 @@
+Context - davomi
+
+`context.Context` — bu standart kutubxonada e’lon qilingan 4 ta metoddan iborat interfeysdir
+
+1. Deadline() - kontekst qachon avtomatik bekor bo'lishini ko'rsatuvchi aniq vaqtni qaytaradi (time.Time)
+   agar timeout belgilanmagan bo'lsa ok false bo'ladi.
+
+2. Done()- Kontekst bekor qilinganda yoki vaqti tugaganda yopiladigan 
+   (close) kanal. Yopiq kanaldan o‘qish darhol nol qiymat 
+   (`struct{}{}`) qaytargani sababli, `select` blokida `case <-ctx.Done():`
+    orqali to‘xtash signali tutiladi
+
+3. Err(): Kontekst hali faol bo‘lsa `nil`, yopilgan bo‘lsa sababini sentinel 
+   error sifatida qaytaradi:
+    `context.Canceled` — qo‘lda `cancel()` chaqirilganda.
+    `context.DeadlineExceeded` — belgilangan vaqt tugab, timeout yuz berganda
+
+4. Value(key): Berilgan kalit bo‘yicha kontekst daraxtidan metama’lumotni qidiradi
+
+
+
+kontekslat o'zgarmas immutable objectdir. Mavjud konteksni o'zgartirib bo'lmaydi
+  har safar nimadur qo'shilsa, mavjud ota kontekstni o'rab oluvchi yangi bola child kontekst xosil bo'ladi
+
+Kontekst iearxiyasi:
+                                context.Background()
+                            WithTimeout(ctx, 5*time.Second)
+                              WithValue(ctx,key,"req_123")
+                WithCancel(ctx)                     WithTimeout(ctx,1*time.Second)
+
+Agar ota kontekst bekor qilinsa yoki uning vaqti tugasa, uning barcha barcha
+bola kontekstlari ham avtomatik bekor bo‘ladi
+
+Bola kontekst hech qachon otasidan uzoqroq yashay olmaydi. Agar ota kontekstga 
+2 soniya, bolaga 5 soniya timeout bersangiz, 2 soniyadan so‘ng ikkalasi ham 
+to‘xtaydi
+
+
+ctx, cancel := context.WithCancel(context.Background()) 
+defer cancel() // Resource leak'ning oldini olish uchun shart!
+`cancel()` chaqirilganda, ichki `Done()` kanali yopiladi
+
+Vaqt chegaralari: `context.WithTimeout` va `WithDeadline`
+
+WithTimeout(parent, duration): Muayyan davomiylikdan so‘ng (masalan,
+ `2 * time.Second`) avtomatik bekor bo‘ladi.
+
+ WithDeadline(parent, time): Muayyan aniq kalendar vaqti (masalan, `15:00:00`) 
+ kelganda bekor bo‘ladi
+
+Ikkala funksiya ham `cancel` funksiyasini qaytaradi va uni doimo 
+`defer cancel()` qilish shart
+
+
+context.WithValue
+ Kontekst orqali qiymat uzatish: `ctx = context.WithValue(parent, key, value)`.
+ Kalitlar to‘qnashuvi (Collision): Kalit sifatida `string` ("user") ishlatish 
+ qat’iyan man etiladi. Chunki boshqa uchinchi tomon kutubxonalari ham 
+ ayni shu so‘zni ishlatsa, ma’lumotlar ustiga yozilib ketadi.
+ Bodner yechimi: Har bir paket o‘zining unexported (kichik harfli) maxsus
+  turini e’lon qiladi: type ctxKey int const userKey ctxKey = 1
+
+  Immutability va Chiziqli Qidiruv: `ctx.Value(key)` chaqirilganda, qidiruv 
+  bola kontekstdan yuqoriga qarab chiziqli (linear) amalga oshiriladi

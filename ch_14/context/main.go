@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"time"
 )
 
 const (
@@ -10,14 +11,23 @@ const (
 )
 
 func main() {
-
 	ctx := context.Background()
+	parent, cancel := context.WithTimeout(ctx, 2*time.Second)
+	defer cancel()
+	child, cancel2 := context.WithTimeout(parent, 3*time.Second)
+	defer cancel2()
+	start := time.Now()
+	<-child.Done()
+	end := time.Now()
+	fmt.Println(end.Sub(start).Truncate(time.Second))
 
-	if myVal, err := ctx.Value("myKey").(string); err {
-		fmt.Println("myVal:", myVal)
-	} else {
-		fmt.Println("myVal not found")
-	}
+	// ctx := context.Background()
+
+	// if myVal, err := ctx.Value("myKey").(string); err {
+	// 	fmt.Println("myVal:", myVal)
+	// } else {
+	// 	fmt.Println("myVal not found")
+	// }
 }
 
 func contextWithUser(ctx context.Context, user string) context.Context {
